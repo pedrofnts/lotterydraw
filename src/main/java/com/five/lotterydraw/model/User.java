@@ -1,6 +1,6 @@
 package com.five.lotterydraw.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -19,6 +19,7 @@ public class User {
     private String name;
 
     @OneToMany(mappedBy = "owner")
+    @JsonIgnore
     private List<Ticket> tickets = new ArrayList<>();
 
 }

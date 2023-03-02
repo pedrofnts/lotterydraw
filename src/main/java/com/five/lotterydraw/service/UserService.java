@@ -13,6 +13,7 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
+
     public List<User> listAll() {
         return userRepository.findAll();
     }
@@ -25,6 +26,8 @@ public class UserService {
         return userRepository.save(user);
     }
 
+    }
 
 
-}
+
+
