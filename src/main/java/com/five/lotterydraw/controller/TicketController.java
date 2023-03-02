@@ -10,16 +10,24 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/tickets")
+@RequestMapping("/users/{userId}")
 public class TicketController {
     @Autowired
     private TicketRepository ticketRepository;
     @Autowired
-    private UserRepository userRepository;
-    @Autowired
     private TicketService ticketService;
 
-    @PostMapping("/{userId}")
+    @GetMapping("/tickets")
+    public ResponseEntity<?> listAll(@PathVariable Long userId)
+    {
+        try {
+            return ResponseEntity.ok(ticketRepository.findAllByOwner_Id(userId));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+        }
+    }
+
+    @PostMapping("/tickets")
     public ResponseEntity<?> add(@PathVariable Long userId,
                                  @RequestBody Ticket ticket)
     {
