@@ -1,7 +1,7 @@
 package com.five.lotterydraw.controller;
 
 import com.five.lotterydraw.model.User;
-import com.five.lotterydraw.repository.UserRepository;
+import com.five.lotterydraw.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -13,22 +13,22 @@ import java.util.List;
 public class UserController {
 
     @Autowired
-    private UserRepository userRepository;
+    private UserService userService;
 
     @GetMapping
     public List<User> listAll() {
-        return userRepository.findAll();
+        return userService.listAll();
     }
 
     @GetMapping("/{id}")
     public User get(@PathVariable Long id) {
-        return userRepository.findById(id).orElseThrow();
+        return userService.get(id);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public User add(@RequestBody User user) {
-        return userRepository.save(user);
+        return userService.add(user);
     }
 
 }
