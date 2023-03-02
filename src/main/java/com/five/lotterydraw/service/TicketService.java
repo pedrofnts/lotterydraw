@@ -1,5 +1,6 @@
 package com.five.lotterydraw.service;
 
+import com.five.lotterydraw.dto.WinnerTicketDto;
 import com.five.lotterydraw.model.Ticket;
 import com.five.lotterydraw.model.User;
 import com.five.lotterydraw.repository.TicketRepository;
@@ -19,6 +20,10 @@ public class TicketService {
 
     @Autowired
     private TicketRepository ticketRepository;
+
+    public List<Ticket> listAll() {
+        return ticketRepository.findAll();
+    }
 
     public Ticket addTicket(Long userId, Ticket ticket) {
         User user = userRepository.findById(userId).orElseThrow();
