@@ -20,7 +20,7 @@ public class TicketService {
     @Autowired
     private TicketRepository ticketRepository;
 
-    public Ticket addTicket(Long userId, Ticket ticket, boolean generateNumbers) {
+    public Ticket addTicket(Long userId, Ticket ticket) {
         User user = userRepository.findById(userId).orElseThrow();
 
         ticket.setOwner(user);

@@ -21,11 +21,10 @@ public class TicketController {
 
     @PostMapping("/{userId}")
     public ResponseEntity<?> add(@PathVariable Long userId,
-                                 @RequestBody Ticket ticket,
-                                 @RequestParam(required = false) boolean generateNumbers)
+                                 @RequestBody Ticket ticket)
     {
         try {
-            Ticket savedTicket = ticketService.addTicket(userId, ticket, generateNumbers);
+            Ticket savedTicket = ticketService.addTicket(userId, ticket);
             return ResponseEntity.ok(savedTicket);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
