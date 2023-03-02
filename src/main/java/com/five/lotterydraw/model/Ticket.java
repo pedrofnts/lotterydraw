@@ -32,4 +32,8 @@ public class Ticket {
     @JsonProperty("randomized")
     private boolean randomized;
 
+    @JsonIgnore
+    @Column
+    private double prize;
+
 }
