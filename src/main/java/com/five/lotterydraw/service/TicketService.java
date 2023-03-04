@@ -1,11 +1,10 @@
 package com.five.lotterydraw.service;
 
-import com.five.lotterydraw.dto.WinnerTicketDto;
 import com.five.lotterydraw.model.Ticket;
 import com.five.lotterydraw.model.User;
 import com.five.lotterydraw.repository.TicketRepository;
 import com.five.lotterydraw.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -13,16 +12,19 @@ import java.util.List;
 import java.util.Random;
 
 @Service
+@AllArgsConstructor
 public class TicketService {
 
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
-    @Autowired
-    private TicketRepository ticketRepository;
+    private final TicketRepository ticketRepository;
 
     public List<Ticket> listAll() {
         return ticketRepository.findAll();
+    }
+
+    public List<Ticket> listAllByOwner(Long userId) {
+        return ticketRepository.findAllByOwner_Id(userId);
     }
 
     public Ticket addTicket(Long userId, Ticket ticket) {
@@ -32,6 +34,13 @@ public class TicketService {
 
         if (ticket.isRandomized()) {
             generateTicketNumbers(ticket);
+        }
+
+        List<Integer> numbers = ticket.getNumbers();
+        for (Integer number : numbers) {
+            if (number < 1 || number > 10) {
+                throw new IllegalArgumentException("Os números da aposta devem ser de 1 a 10.");
+            }
         }
 
         double price = calculateTicketPrice(ticket);

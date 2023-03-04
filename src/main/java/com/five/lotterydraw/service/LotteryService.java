@@ -2,30 +2,27 @@ package com.five.lotterydraw.service;
 
 import com.five.lotterydraw.dto.WinnerTicketDto;
 import com.five.lotterydraw.model.Ticket;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
-@Slf4j
+@AllArgsConstructor
 public class LotteryService {
 
-    @Autowired
-    private TicketService ticketService;
+    private final TicketService ticketService;
 
-    private List<Integer> generateWinningNumbers() {
+    protected List<Integer> generateWinningNumbers() {
         Set<Integer> uniqueNumbers = new HashSet<>();
         Random random = new Random();
         while (uniqueNumbers.size() < 5) {
             int number = random.nextInt(10) + 1;
             uniqueNumbers.add(number);
         }
-        List<Integer> uniqueNumbersList = new ArrayList<>(uniqueNumbers);
-        log.info("Winning numbers: " + uniqueNumbersList);
-        return uniqueNumbersList;
+
+        return new ArrayList<>(uniqueNumbers);
     }
 
     public List<WinnerTicketDto> findWinningTickets() {

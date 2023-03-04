@@ -2,16 +2,16 @@ package com.five.lotterydraw.service;
 
 import com.five.lotterydraw.model.User;
 import com.five.lotterydraw.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@AllArgsConstructor
 public class UserService {
 
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
 
     public List<User> listAll() {
