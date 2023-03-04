@@ -1,6 +1,7 @@
 package com.five.lotterydraw.dto;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.five.lotterydraw.model.Ticket;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,15 +13,18 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class WinnerTicketDto {
+
+    @JsonIgnore
+    private Long id;
     private Long owner_id;
-    private String ownerName;
+    private String owner_name;
     private List<Integer> numbers;
     private double prize;
 
     public WinnerTicketDto(Ticket ticket) {
         this.numbers = ticket.getNumbers();
         this.owner_id = ticket.getOwner().getId();
-        this.ownerName = ticket.getOwner().getName();
+        this.owner_name = ticket.getOwner().getName();
         this.prize = ticket.getPrize();
     }
 
