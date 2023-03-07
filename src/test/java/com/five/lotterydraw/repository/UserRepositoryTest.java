@@ -28,44 +28,35 @@ public class UserRepositoryTest {
 
     @Test
     public void testFindAll() {
-        // define o comportamento esperado para o método findAll()
         List<User> users = new ArrayList<>();
         users.add(new User());
         when(userRepository.findAll()).thenReturn(users);
 
-        // chama o método findAll() no mock
         List<User> result = userRepository.findAll();
 
-        // verifica se o comportamento esperado ocorreu
         assertEquals(users, result);
     }
 
     @Test
     public void testFindById() {
-        // define o comportamento esperado para o método findById()
         User user = new User();
         user.setId(1L);
         when(userRepository.findById(1L)).thenReturn(Optional.of(user));
 
-        // chama o método findById() no mock
         Optional<User> result = userRepository.findById(1L);
 
-        // verifica se o comportamento esperado ocorreu
         assertTrue(result.isPresent());
         assertEquals(user, result.get());
     }
 
     @Test
     public void testSave() {
-        // define o comportamento esperado para o método save()
         User user = new User();
         user.setName("Alice");
         when(userRepository.save(user)).thenReturn(user);
 
-        // chama o método save() no mock
         User result = userRepository.save(user);
 
-        // verifica se o comportamento esperado ocorreu
         assertEquals(user, result);
     }
 
