@@ -4,7 +4,7 @@ Esse é o repositório para o back-end da aplicação Lottery Draw, para cadastr
 
 ## Documentação da API
 
-[![Run in Postman](https://run.pstmn.io/button.svg)](https://www.postman.com/winter-capsule-291211/workspace/lotterydraw/documentation/21642696-b88edf55-9b0e-4a47-bcb0-ba1121adb8f9?entity=&branch=&version=)
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://documenter.getpostman.com/view/21642696/2s93JoxRYz)
 ## Tecnologias utilizadas
 
 * Java
